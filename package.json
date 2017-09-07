@@ -1,0 +1,24 @@
+{
+  "name": "testautomation",
+  "version": "1.0.0",
+  "description": "npm install selenium-webdriver",
+  "main": "index.js",
+  "dependencies": {
+    "jasmine": "^2.8.0",
+    "selenium-webdriver": "^3.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xianfuzheng/testautomation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xianfuzheng/testautomation/issues"
+  },
+  "homepage": "https://github.com/xianfuzheng/testautomation#readme"
+}
