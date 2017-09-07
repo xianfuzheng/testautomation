@@ -1,4 +1,6 @@
 var selenium = require('selenium-webdriver');
+var utils = require("../helpers/utils.js");
+
 
 describe('Selenium Tutorial', function() {
 
@@ -19,6 +21,7 @@ describe('Selenium Tutorial', function() {
 
     // Test to ensure we are on the home page by checking the <body> tag id attribute
     it('Should be on the home page', function(done) {
+      utils.saveScreenshot(this.driver, '1.png');
         var element = this.driver.findElement(selenium.By.tagName('body'));
 
         element.getAttribute('id').then(function(id) {
