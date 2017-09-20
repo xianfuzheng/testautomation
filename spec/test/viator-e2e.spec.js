@@ -11,7 +11,8 @@ describe('Viator E2E', function() {
             withCapabilities(webdriver.Capabilities.chrome()).
             build();
 
-
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000;
+        done();
 
     });
 
@@ -23,18 +24,21 @@ describe('Viator E2E', function() {
 
     // Test to ensure we are on the home page by checking the <body> tag id attribute
     it('Free Sales', function(done) {
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000;
       var browser = this.browser;
       var self = this;
-      browser.get('https://www.viator.com/');
+      browser.get('http://viator.com').then(function(){
+        utils.saveScreenshot(browser);
 
-      var searchBox = browser.wait(webdriver.until.elementLocated(webdriver.By.id('freeTextKeyword')), 1000000);
+        // do we have pop
+        var popWindow = browser.findElement(webdriver.By.id("TYcontent"));
 
-      searchBox.sendKeys('Sydney\n');
+        if(popWindow){
+          popWindow.findElement(webdriver.By.className("close-cirlce")).click();
+          utils.saveScreenshot(browser);
+        }
 
-      utils.saveScreenshot(browser);
-
-      done();
+        done();
+      });
 
     });
 });

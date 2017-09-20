@@ -10,6 +10,7 @@ const Utils = {
     if (!fileName) {
         fileName = imageNo+".png";
     }
+    imageNo++;
 
     browser.takeScreenshot().then(
         function(image, err) {
