@@ -26,19 +26,30 @@ describe('Viator E2E', function() {
     it('Free Sales', function(done) {
       var browser = this.browser;
       var self = this;
-      browser.get('http://viator.com').then(function(){
-        utils.saveScreenshot(browser);
 
-        // do we have pop
-        var popWindow = browser.findElement(webdriver.By.id("TYcontent"));
+      browser.get('https://www.viator.com');
+      utils.saveScreenshot(browser);
 
-        if(popWindow){
-          popWindow.findElement(webdriver.By.className("close-cirlce")).click();
+      browser.findElements({css:'.close-circle'}).then(function(results){
+        if (results && results.length > 0) {
+          console.log('pop up window is presented');
+          results[0].click();
           utils.saveScreenshot(browser);
         }
-
-        done();
       });
+
+      var freeTextKeywordSearch = browser.findElement({id:'freeTextKeyword'});
+      freeTextKeywordSearch.sendKeys("Sydney").then(function(){
+
+        console.log('get Sydney....');
+          utils.saveScreenshot(browser);
+
+          browser.findElement({css:'#searchGo'}).click().then(function(){
+            utils.saveScreenshot(browser);
+          });
+      });
+
+
 
     });
 });
