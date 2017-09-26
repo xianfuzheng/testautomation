@@ -14,7 +14,7 @@ const Utils = {
 
     browser.takeScreenshot().then(
         function(image, err) {
-            fs.writeFile(folderRoot+ "/"+ fileName, image, 'base64', function(err) {
+            fs.writeFileSync(folderRoot+ "/"+ fileName, image, 'base64', function(err) {
                 console.log("File " + fileName + " saved");
             });
         }

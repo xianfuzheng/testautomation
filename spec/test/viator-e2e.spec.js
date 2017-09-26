@@ -1,7 +1,7 @@
 var webdriver = require('selenium-webdriver');
 
 var utils = require("../helpers/utils.js");
-
+const fs = require('fs');
 
 describe('Viator E2E', function() {
 
@@ -34,7 +34,11 @@ describe('Viator E2E', function() {
         if (results && results.length > 0) {
           console.log('pop up window is presented');
           results[0].click();
-          utils.saveScreenshot(browser);
+          browser.takeScreenshot().then(
+              function(image, err) {
+                  fs.writeFileSync("images/1.png", image, 'base64');
+              }
+          );
         }
       });
 
@@ -42,10 +46,18 @@ describe('Viator E2E', function() {
       freeTextKeywordSearch.sendKeys("Sydney").then(function(){
 
         console.log('get Sydney....');
-          utils.saveScreenshot(browser);
+        browser.takeScreenshot().then(
+            function(image, err) {
+                fs.writeFileSync("images/2.png", image, 'base64');
+            }
+        );
 
           browser.findElement({css:'#searchGo'}).click().then(function(){
-            utils.saveScreenshot(browser);
+            browser.takeScreenshot().then(
+                function(image, err) {
+                    fs.writeFileSync("images/4.png", image, 'base64');
+                }
+            );
           });
       });
 
